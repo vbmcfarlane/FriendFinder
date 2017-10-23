@@ -18,7 +18,7 @@ module.exports = function(app){
     // In case of multiple users with the same result it will choose the first match.
     // After the test, it will push the user to the database.
 
-    // We will use this object to hold the "best match". We will constantly update it as we
+    // The object to hold the "best match". We will constantly update it as we
     // loop through all of the options
     var bestMatch = {
       name: "",
