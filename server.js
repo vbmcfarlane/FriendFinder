@@ -13,7 +13,7 @@ var path = require('path');
 var app = express();
 
 // Sets an initial port. We"ll use this later in our listener
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 // ================================================================================
 // BodyParser makes it possible for our server to interpret data sent to it.
 // The code below is pretty standard.
@@ -39,7 +39,7 @@ require(path.join(__dirname, './app/routing/htmlRoutes'))(app);
 app.listen(PORT, function() {
   console.log('---------------------------------------------------------');	
   console.log(' Friend Finder application is listening on PORT: ' + PORT);
-  console.log(' Go to you preferred browser and enter: localhost:8080');
+  console.log(' Go to you preferred browser and enter: localhost:3000');
   console.log(' to access the Friend Finder application');
   console.log('---------------------------------------------------------');
 });

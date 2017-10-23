@@ -11,11 +11,11 @@ module.exports = function(app){
   // user submits a form and it submits data to the server.
   app.post('/api/friends', function(req, res){
 
-  // Note the code here. Our "server" will respond to a user"s survey result
-    // Then compare those results against every user in the database.
-    // It will then calculate the difference between each of the numbers and the user"s numbers.
-    // It will then choose the user with the least differences as the "best friend match."
-    // In the case of multiple users with the same result it will choose the first match.
+  	// This code will respond to a user's survey input
+    // and compare those results against every user in the database.
+    // It calculates the difference between each of the numbers and the user"s numbers.
+    // It chooses the user with the least differences as the "best friend match."
+    // In case of multiple users with the same result it will choose the first match.
     // After the test, it will push the user to the database.
 
     // We will use this object to hold the "best match". We will constantly update it as we
@@ -30,26 +30,26 @@ module.exports = function(app){
     var userData = req.body;
     var userScores = userData.scores;
 
-    // This variable will calculate the difference between the user"s scores and the scores of
+    // This variable will store the difference between the user"s scores and the scores of
     // each user in the database
     var totalDifference = 0;
 
-    // Here we loop through all the friend possibilities in the database.
+    // Loop through all the friend possibilities in the database.
     for (var i = 0; i < friends.length; i++) {
 
       console.log(friends[i].name);
       totalDifference = 0;
 
-      // We then loop through all the scores of each friend
+      //  Loop through all the scores of each friend
       for (var j = 0; j < friends[i].scores[j]; j++) {
 
-        // We calculate the difference between the scores and sum them into the totalDifference
+        // Calculate the difference between the scores and sum them into the totalDifference
         totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
 
-        // If the sum of differences is less then the differences of the current "best match"
+        // Evaluates the sum of differences is less then the differences of the current "best match"
         if (totalDifference <= bestMatch.friendDifference) {
 
-          // Reset the bestMatch to be the new friend.
+          // Reset the bestMatch.
           bestMatch.name = friends[i].name;
           bestMatch.photo = friends[i].photo;
           bestMatch.friendDifference = totalDifference;
@@ -57,8 +57,7 @@ module.exports = function(app){
       }
     }
 
-    // Finally save the user's data to the database (this has to happen AFTER the check. otherwise,
-    // the database will always return that the user is the user's best friend).
+    //  Save the user's data to the database 
     friends.push(userData);
 
     // Return a JSON with the user's bestMatch. This will be used by the HTML in the next page
